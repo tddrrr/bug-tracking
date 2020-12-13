@@ -1,6 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import router from './routes/index.js'
+import dotenv from 'dotenv'
+dotenv.config()
 let port = 8080;
 
 const app = express();
