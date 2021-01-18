@@ -1,5 +1,4 @@
 import models from '../models/index.js'
-import UserTeam from '../models/UserTeam.js';
 const User = models.User;
 const Team = models.Team;
 const Project = models.Project
