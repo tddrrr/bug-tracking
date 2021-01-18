@@ -8,7 +8,7 @@ export default {
         if (users) {
             res.status(200).send(users);
         }} catch(err) {
-            res.status(500).send({err: err.message})
+            res.status(500).send(err.message)
         }
     },
     updateUserName: async (req, res) => {
@@ -23,7 +23,23 @@ export default {
                 res.status(200).send(user);
             }
             } catch(err) {
-                res.status(500).send({err: err.message})
+                res.status(500).send(err.message)
+            }
+    },
+    updatePassword: async (req, res) => {
+        try {
+            const user = await User.findByPk(req.user.id);
+            console.log(user);
+            console.log(req.user);
+            if (!user) {
+                res.status(404).send("User doesn't exist");
+            } else {
+                user.Password = req.body.password;
+                await user.save();
+                res.status(200).send("Password changed");
+            }
+            } catch(err) {
+                res.status(500).send(err.message)
             }
     },
     deleteUser: async (req, res) => {
@@ -36,7 +52,7 @@ export default {
                 res.status(200).send(user);
             }
         } catch(err) {
-            res.status(500).send({err: err.message})
+            res.status(500).send(err.message)
         }
     }
 }
