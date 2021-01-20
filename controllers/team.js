@@ -8,11 +8,11 @@ export default {
             const team = await Team.create({
                 Name: req.body.name
             })
-            let user = await User.findByPk(req.body.userID);
+            let user = await User.findByPk(req.user.id);
 
             await team.addUser(user);
 
-            let userTeam = await User.findByPk(req.body.userID,
+            let userTeam = await User.findByPk(req.user.id,
                 {
                     include: [{
                         model: Team,
@@ -66,7 +66,7 @@ export default {
             res.status(500).json({err: err.message})
         }
     },
-    getTeams: async(req, res) => {
+    getTeams: async (req, res) => {
         try {
             let teams = await Team.findAll();
             if (teams) {
@@ -77,5 +77,7 @@ export default {
         } catch(err) {
             res.status(500).json({err: err.message});
         }
-    }
+    },
+    //TODO: update la team (cu validare daca e membru pe echipa)
+    //si delete Team
 }
