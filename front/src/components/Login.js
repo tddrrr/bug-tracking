@@ -4,8 +4,9 @@ import axios from 'axios'
 import {TextField, Button, Grid, Icon} from '@material-ui/core'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {withRouter} from 'react-router-dom'
 
-export default class Login extends Component{
+class Login extends Component{
     constructor(props) {
         super(props)
 
@@ -28,6 +29,7 @@ export default class Login extends Component{
                         toast.success("Logged in successfully")
                         localStorage.setItem('token', res.data.token);
                         axios.defaults.headers.common['Authorization'] = `Bearer `+ res.data.token // for all requests
+                        this.props.history.push('/dashboard');
                     })
                     .catch(error => {console.log(error.response.data);
                                     toast.error(`${error.response.data.message}`);}) //cu toastify
@@ -63,8 +65,14 @@ export default class Login extends Component{
                 draggable
                 pauseOnHover
             />
+            <p>Don't have an account?<span onClick={() => {
+                this.props.history.push("/register");
+            }}> Click here to register.</span></p>
             </Grid>
             </div>
         )
     }
 }
+
+
+export default withRouter(Login)

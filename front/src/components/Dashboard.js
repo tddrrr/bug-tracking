@@ -36,15 +36,6 @@ const rows = [
 ];
 
 
-class Dashboard extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      
-    }
-  }
-
 //   async componentDidMount() {
 //     let data = await get(router);
 //     if (data.hasErrors){
@@ -54,6 +45,17 @@ class Dashboard extends Component {
 
 //     this.setState({rows: data});
 // }
+class Dashboard extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      titlu: props.titlu,
+      subtitlu: props.subtitlu
+    }
+  }
+
+
 
 
   render() {
