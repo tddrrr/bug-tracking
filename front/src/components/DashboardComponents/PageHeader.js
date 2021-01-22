@@ -11,6 +11,7 @@ const styles = {
     container:{
        // backgroundColor: "blue"
     }
+    
 
 }
 
@@ -24,9 +25,9 @@ const PageHeader = (props) => (
                 {props.subtitle}
             </Typography>
             <Container fixed >
-                <p> 
-                    Informatii in functie de ce se vrea afisat.
-                </p>
+                <h1> 
+                    PROFIL UTILIZATOR
+                </h1>
 
             </Container>
         </Card >

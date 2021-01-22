@@ -1,22 +1,22 @@
 export const MenuItems=[
     {
-        title:'View My Projects',
-        path:'../dashboard/my_pojects',
+        title:'View All Projects',
+        path:'../dashboard/all_projects',
         cName:'nav-links'
     },
     {
-        title:'My Tickets',
-        path:'../dashboard/my_tickets',
+        title:'Create new project',
+        path:'../dashboard/create_project',
         cName:'nav-links'
     },
     {
-        title:'All Tickets',
-        path:'../dashboard/all_tickets',
+        title:'View all Teams',
+        path:'../dashboard/view_teams',
         cName:'nav-links'
     },
     {
-        title:'Tickets Assigned To Me',
-        path:'../dashboard/tickets_assigned_to_me',
+        title:'Create new Team',
+        path:'../dashboard/create_teams',
         cName:'nav-links'
     }
 ]

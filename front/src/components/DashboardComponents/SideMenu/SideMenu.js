@@ -51,7 +51,6 @@ class SideMenu extends Component {
                     })}
 
                 </ul>
-                <Button>Add a new bug</Button>
             </nav>
 
         )
