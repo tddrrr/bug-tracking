@@ -92,8 +92,8 @@ class Dashboard extends Component {
             </Table>
           </TableContainer>
           <br></br><br></br>
-          <Button variant="contained" onClick={this.changeUsername}>Reseteaza parola</Button>
-          <Button variant="contained" onClick={this.changePasswd}>Schimba Nume</Button>
+          <Button variant="contained" onClick={this.changeUsername}>Schimba Username</Button>
+          <Button variant="contained" onClick={this.changePasswd}>Reseteaza Parola</Button>
         </div>
         <CssBaseline />
 
