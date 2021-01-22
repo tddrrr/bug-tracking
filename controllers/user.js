@@ -11,6 +11,9 @@ export default {
             res.status(500).send(err.message)
         }
     },
+    getUser: async (req, res) => {
+        res.send(req.user);
+    },
     updateUserName: async (req, res) => {
         try {
             const user = await User.findByPk(req.params.id);
