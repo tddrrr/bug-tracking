@@ -2,6 +2,8 @@ import { AppBar, Grid, IconButton, Toolbar, Badge, Typography } from '@material-
 import React, { Component } from 'react';
 import BugReportIcon from '@material-ui/icons/BugReport';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
 const styles ={
     navbar:{
@@ -24,16 +26,14 @@ class header extends Component {
                         </Grid>
                         <Grid item sm></Grid>
                         <Grid item >
-                            <IconButton>
-                                <Badge >
-                                    <BugReportIcon color="C33C54"/>
-                                    {/* aici vom arata cate buguri sunt deschise sau ceva de genul */}
-                                </Badge>
-                            </IconButton>
-                            <IconButton>
+                            <IconButton onClick={
+                                () => {localStorage.clear()
+                                    axios.defaults.headers.common['Authorization'] = ''
+                                    this.props.history.push("/")
+                                    }
+                            }>
                                 <Badge  >
                                     <PowerSettingsNewIcon />
-                                    {/* aici vom arata cate buguri sunt deschise sau ceva de genul */}
                                 </Badge>
                             </IconButton>
                         </Grid>
@@ -45,4 +45,4 @@ class header extends Component {
     }
 }
 
-export default header;
+export default withRouter(header);

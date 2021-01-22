@@ -16,7 +16,7 @@ export const MenuItems=[
     },
     {
         title:'Create new Team',
-        path:'../dashboard/create_teams',
+        path:'../dashboard/create_team',
         cName:'nav-links'
     }
 ]

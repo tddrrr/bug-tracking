@@ -5,6 +5,7 @@ import Alert from '@material-ui/lab/Alert';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { withRouter } from 'react-router-dom';
+
 class CreateTeam extends Component {
     constructor(props) {
         super(props)
@@ -24,8 +25,6 @@ class CreateTeam extends Component {
         }
 
         this.onCreateTeam = (e) => {
-            let token = localStorage.getItem('token');
-            axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
             if (this.state.name) {
                 axios.post('/api/team/createTeam', { name: this.state.name })
                     .then((res) => {

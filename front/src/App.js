@@ -8,13 +8,14 @@ import ViewProjects from './components/ViewProjects'
 import ViewBugs from './components/ViewBugs'
 import AddBug from './components/AddBug'
 import ViewTeams from './components/ViewTeams'
+import CreateTeam from './components/CreateTeam'
+import CreateProject from './components/CreateProject'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 
 class App extends Component {
   constructor(props) {
     super(props)
-    // axios.defaults.headers.common['Authorization'] = `Bearer `+ res.data.token // for all requests
 
     
     this.isLoggedIn = () => {
@@ -68,7 +69,19 @@ class App extends Component {
               return (<ViewTeams />)}
             else {
               return (<Redirect to="/" />)}} 
-            }/>  
+            }/>
+            <Route path="/dashboard/create_project" exact render= {() => {
+            if (this.isLoggedIn()) {
+              return (<CreateProject />)}
+            else {
+              return (<Redirect to="/" />)}} 
+            }/>
+            <Route path="/dashboard/create_team" exact render= {() => {
+            if (this.isLoggedIn()) {
+              return (<CreateTeam />)}
+            else {
+              return (<Redirect to="/" />)}} 
+            }/>
         </Switch>
       </BrowserRouter>
     )
