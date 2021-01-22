@@ -4,6 +4,8 @@ import axios from 'axios'
 import Dashboard from './components/Dashboard'
 import Register from './components/Register'
 import Login from './components/Login'
+import ViewProjects from './components/ViewProjects'
+import ViewBugs from './components/ViewBugs'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 
@@ -35,8 +37,24 @@ class App extends Component {
               return (<Login />)}} 
             }/>
           <Route path="/register" exact component={Register}></Route>
-          <Route path="/dashboard" exact component={Dashboard}></Route>
-          
+          <Route path="/dashboard" exact render= {() => {
+            if (this.isLoggedIn()) {
+              return (<Dashboard />)}
+            else {
+              return (<Redirect to="/" />)}} 
+            }/>   
+          <Route path="/dashboard/getAllProjects" exact render= {() => {
+            if (this.isLoggedIn()) {
+              return (<ViewProjects />)}
+            else {
+              return (<Redirect to="/" />)}} 
+            }/>   
+            <Route path="/dashboard/project/:id/bugs" exact render= {() => {
+            if (this.isLoggedIn()) {
+              return (<ViewBugs />)}
+            else {
+              return (<Redirect to="/" />)}} 
+            }/>  
         </Switch>
       </BrowserRouter>
     )

@@ -43,7 +43,6 @@ export default {
     assignBug: async(req, res) => {
         try {
             const bug = await Bug.findByPk(req.body.id);
-            console.log(bug);
             if (bug) {
                 bug.userID = req.user.id;
                 await bug.save();
