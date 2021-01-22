@@ -85,8 +85,6 @@ class Dashboard extends Component {
             </Table>
           </TableContainer>
         </div>
-        <Button> Reseteaza parola</Button>
-        <Button> SC parola</Button>
         <CssBaseline />
       </>
     )
