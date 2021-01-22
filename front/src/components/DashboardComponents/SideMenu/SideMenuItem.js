@@ -7,7 +7,7 @@ export const MenuItems=[
     {
         title:'Create new project',
         path:'../dashboard/create_project',
-        cName:'nav-links'
+        cName:'CreateProject'
     },
     {
         title:'View All Teams',

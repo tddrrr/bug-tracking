@@ -7,7 +7,9 @@ export default {
         try {
             const team = await Team.create({
                 Name: req.body.name
+
             })
+            console.log(req.body.name)
             let user = await User.findByPk(req.user.id);
 
             await team.addUser(user);
@@ -21,10 +23,10 @@ export default {
                     }]
                 })
 
-        res.status(201).send(userTeam);
-        } catch(err) {
-            console.log(err); 
-            res.status(500).json({err: err.message})
+            res.status(201).send(userTeam);
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ err: err.message })
         }
     },
     addUserTeam: async (req, res) => {
@@ -48,7 +50,7 @@ export default {
         }
         catch (err) {
             console.log(err);
-            res.status(500).json({err: err.message})
+            res.status(500).json({ err: err.message })
         }
     },
     getTeamUsers: async (req, res) => {
@@ -63,7 +65,7 @@ export default {
             }
         } catch (err) {
             console.log(err);
-            res.status(500).json({err: err.message})
+            res.status(500).json({ err: err.message })
         }
     },
     getTeams: async (req, res) => {
@@ -77,8 +79,8 @@ export default {
             } else {
                 res.status(400).send("No teams registered yet")
             }
-        } catch(err) {
-            res.status(500).json({err: err.message});
+        } catch (err) {
+            res.status(500).json({ err: err.message });
         }
     },
     //TODO: update la team (cu validare daca e membru pe echipa)
