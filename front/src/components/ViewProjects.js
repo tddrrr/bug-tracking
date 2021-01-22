@@ -86,7 +86,9 @@ class ViewProjects extends Component {
                                         <TableCell align="center">{p.Repo}</TableCell>
                                         <TableCell align="center">{p.teamID}</TableCell>
                                         <TableCell align="center">
-                                            <Button>Click to add</Button>
+                                            <Button onClick={() => {
+                                                this.props.history.push(`/dashboard/project/${p.id}/add`)
+                                            }}>Click to add</Button>
                                         </TableCell>
                                         <TableCell align="center">
                                         <Button onClick={() => {
