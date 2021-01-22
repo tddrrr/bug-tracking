@@ -4,6 +4,7 @@ import { MenuItems } from "./SideMenuItem";
 import { Button } from "../Button/Button"
 import PageHeader from '../PageHeader'
 import "./SideMenu.css"
+import { Link } from 'react-router-dom';
 const styles = {
     sidemenu: color => ({
         display: "flex",
@@ -30,23 +31,23 @@ class SideMenu extends Component {
     }
     render() {
         return (
-            <nav className="sidemenu" style={styles.sidemenu("LightSteelBlue")}>
-                <h1 className="navbar-logo"></h1>
-                <h1 className="navbar-logo">Welcome!</h1>
-                <h1 className="navbar-logo"></h1> 
-                {/* alea de mai sus sunt pentru spatiere, avem nevoie doar de welcome */}
-                <div className="menu-icon" onClick={this.handleClick}>
-                    <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
+            <nav className="nav-menu active" style={styles.sidemenu("LightSteelBlue")}>
+                {/* <h1 className="navbar-logo">Welcome!</h1>
+                <br></br> 
+                <br></br> 
+                <br></br>            alea de mai sus sunt pentru spatiere, avem nevoie doar de welcome */}
+                <div className="menu-icon">
+                    {/* <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>  */}
+                     {/* pentru efectul de hoover */}
                 </div>
-                <ul>
+                <ul className='nav-menu-items'>
                     {
                     MenuItems.map((item, index) => {
                         return (
-                            <li key={index}>
-                                <a className={item.cName} href={item.url} >
+                            <li key={index} className=' nav-text'>
+                                <Link to={item.path} >
                                     {item.title}
-
-                                </a>
+                                </Link>
                                 
                             </li>
                         )

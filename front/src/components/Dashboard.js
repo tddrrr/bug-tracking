@@ -15,6 +15,10 @@ const styles = {
   }
 
 }
+function changeProps(t, st){
+  this.state.titlu=t;
+  this.state.subtitlu=st;
+}
 // const titleConst = "Titlu din props, in functie de ce apelam"
 class Dashboard extends Component {
   constructor(props) {

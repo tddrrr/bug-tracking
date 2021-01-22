@@ -1,22 +1,26 @@
 export const MenuItems=[
     {
         title:'View My Projects',
-        url:'#',
+        // url:'#',
+        path:'my_pojects',
         cName:'nav-links'
     },
     {
         title:'My Tickets',
-        url:'#',
+        // url:'#',
+        path:'dashboard/my_tickets',
         cName:'nav-links'
     },
     {
         title:'All Tickets',
-        url:'#',
+        // url:'#',
+        path:'all_tickets',
         cName:'nav-links'
     },
     {
         title:'Tickets Assigned To Me',
-        url:'#',
+        // url:'#',
+        path:'tickets_assigned_to_me',
         cName:'nav-links'
     }
 ]

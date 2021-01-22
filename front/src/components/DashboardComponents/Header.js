@@ -3,11 +3,16 @@ import React, { Component } from 'react';
 import BugReportIcon from '@material-ui/icons/BugReport';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 
+const styles ={
+    navbar:{
+        backgroundColor:"#37718E"
+    }
+}
 
 class header extends Component {
     render() {
         return (
-            <AppBar position="static">
+            <AppBar position="static" style={styles.navbar} >
                 <Toolbar>
                     <Grid container>
                         {/* <Grid item sm={6} style={{ border: '1 px solid #fff' }}>
