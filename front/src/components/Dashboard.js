@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import SideMenu from './DashboardComponents/SideMenu/SideMenu';
 import Header from './DashboardComponents/Header'
 import PageHeader from './DashboardComponents/PageHeader'
-import { Table, CssBaseline, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { Table, CssBaseline, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 // import {router} from '../../../routes';
@@ -36,6 +36,14 @@ class Dashboard extends Component {
 
     this.state = {
       rows: []
+    }
+
+    this.changeUsername = (e) => {
+      axios.post('/api/user/updateUserName/:id', {})
+    }
+     // va fi implementat, ma gan
+    this.changePasswd = (e) => {
+      axios.post('/api/user/updatePassword', {})
     }
   }
 
@@ -78,14 +86,17 @@ class Dashboard extends Component {
                   <TableRow align="left" key={row.info} hover="true">
                     <TableCell component="th" scope="row">{row.info}</TableCell>
                     <TableCell >{row.infouser}</TableCell>
-
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
+          <br></br><br></br>
+          <Button variant="contained" onClick={this.changeUsername}>Reseteaza parola</Button>
+          <Button variant="contained" onClick={this.changePasswd}>Schimba Nume</Button>
         </div>
         <CssBaseline />
+
       </>
     )
   };
