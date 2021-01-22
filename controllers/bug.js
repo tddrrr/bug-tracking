@@ -10,7 +10,7 @@ export default {
                 Severity: req.body.severity,
                 Priority: req.body.priority,
                 LinkBug: req.body.linkBug,
-                Status: req.body.Status
+                Status: req.body.status
             })
             bug.projectID = req.body.projectID;
             await bug.save();

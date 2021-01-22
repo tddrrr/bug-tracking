@@ -68,7 +68,10 @@ export default {
     },
     getTeams: async (req, res) => {
         try {
-            let teams = await Team.findAll();
+            let teams = await Team.findAll({
+                include: [User]
+            }
+            );
             if (teams) {
                 res.status(201).send(teams);
             } else {
