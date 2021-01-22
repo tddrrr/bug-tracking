@@ -3,6 +3,8 @@ import { Button, Grid, TextField, Paper } from '@material-ui/core';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom'
 import {InputLabel, MenuItem, Select} from '@material-ui/core'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../css/addBug.css'
 
 const styles = {
@@ -54,7 +56,7 @@ class AddBug extends Component {
                     })
             }
             else {
-                this.setState({ openError: true })
+                toast.error("Fields must be completed")
             }
         }
 
@@ -63,8 +65,7 @@ class AddBug extends Component {
     }
     render() {
         return (
-            <>
-                 
+            <div>  
             <Grid container direction="column" alignItems="center" spacing={1}>
             <h1>Add bug</h1>
                 <Grid item xs={6} >
@@ -124,7 +125,18 @@ class AddBug extends Component {
                 <Button variant="contained" size="medium" color="primary" onClick={this.goBack} >Cancel</Button>
                 </Grid>
            </Grid>
-           </>
+           <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+           </div>
         
         )
     }

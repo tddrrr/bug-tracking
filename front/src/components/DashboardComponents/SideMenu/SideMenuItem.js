@@ -10,8 +10,8 @@ export const MenuItems=[
         cName:'nav-links'
     },
     {
-        title:'View all Teams',
-        path:'../dashboard/view_teams',
+        title:'View All Teams',
+        path:'../dashboard/teams',
         cName:'nav-links'
     },
     {
