@@ -32,8 +32,6 @@ class Dashboard extends Component {
   render() {
     return (
       <>
-     
-      
         <SideMenu name="home"></SideMenu>
         <div className="App" style={styles.appMain}>
           <Header></Header>

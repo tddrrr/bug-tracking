@@ -5,8 +5,9 @@ import {TextField, Button, Icon, Grid, Snackbar} from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {withRouter} from 'react-router-dom'
 
-export default class Register extends Component{
+class Register extends Component{
     constructor(props) {
         super(props)
 
@@ -67,7 +68,9 @@ export default class Register extends Component{
             <Button variant="contained" size="medium" color="primary" endIcon={<Icon>send</Icon>} onClick={this.onRegister}>
                 send
             </Button>
-            <p>Already have an account? Click <span>here</span> to login.</p>
+            <p><span onClick={() => {
+                this.props.history.push("/");
+            }}>Go back to<a> Login.</a></span></p>
             </Grid>
             <Snackbar open={this.state.openSuccess} autoHideDuration={2000} onClose={this.handleCloseSuccess}>
             <Alert severity="success" onClose={this.handleCloseSuccess}>
@@ -94,3 +97,5 @@ export default class Register extends Component{
         )
     }
 }
+
+export default withRouter(Register)

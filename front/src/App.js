@@ -1,21 +1,42 @@
 import './App.css';
 import React, { Component } from 'react'
-
+import axios from 'axios'
 import Dashboard from './components/Dashboard'
 import Register from './components/Register'
 import Login from './components/Login'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    // axios.defaults.headers.common['Authorization'] = `Bearer `+ res.data.token // for all requests
+
+    
+    this.isLoggedIn = () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}` // for all requests
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={Login}></Route>
+        <Route path="/" exact render= {() => {
+            if (this.isLoggedIn()) {
+              return (<Redirect to="/dashboard"></Redirect>)}
+            else {
+              return (<Login />)}} 
+            }/>
           <Route path="/register" exact component={Register}></Route>
           <Route path="/dashboard" exact component={Dashboard}></Route>
-        
+          
         </Switch>
       </BrowserRouter>
     )
