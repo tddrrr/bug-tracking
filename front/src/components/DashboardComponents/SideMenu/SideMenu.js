@@ -31,13 +31,10 @@ class SideMenu extends Component {
     }
     render() {
         return (
-            <nav className="nav-menu active" style={styles.sidemenu("LightSteelBlue")}>
-                {/* <h1 className="navbar-logo">Welcome!</h1>
-                <br></br> 
-                <br></br> 
-                <br></br>            alea de mai sus sunt pentru spatiere, avem nevoie doar de welcome */}
-                <div className="menu-icon">
-                    {/* <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>  */}
+            <nav className="nav-menu " style={styles.sidemenu("LightSteelBlue")}>
+            
+                <div className="menu">
+                    <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i> 
                      {/* pentru efectul de hoover */}
                 </div>
                 <ul className='nav-menu-items'>

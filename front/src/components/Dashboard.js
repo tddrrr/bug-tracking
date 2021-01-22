@@ -15,24 +15,25 @@ const styles = {
   }
 
 }
-function changeProps(t, st){
-  this.state.titlu=t;
-  this.state.subtitlu=st;
-}
+// function changeProps(t, st){
+//   this.state.titlu=t;
+//   this.state.subtitlu=st;
+// }
 // const titleConst = "Titlu din props, in functie de ce apelam"
 class Dashboard extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-        titlu: 'Titlu la ce s-a selectat',
-        subtitlu: 'Afisare subtitlu la ce s-a selectat'
+        titlu: props.titlu,
+        subtitlu: props.subtitlu
     }
   }
   render() {
     return (
       <>
-        {/* <> e shortcut pentru react fragment, ca sa "creem" o componenta parinte */}
+     
+      
         <SideMenu name="home"></SideMenu>
         <div className="App" style={styles.appMain}>
           <Header></Header>

@@ -15,9 +15,6 @@ class header extends Component {
             <AppBar position="static" style={styles.navbar} >
                 <Toolbar>
                     <Grid container>
-                        {/* <Grid item sm={6} style={{ border: '1 px solid #fff' }}>
-                            <InputBase /> pentru o eventuala bara de search
-                        </Grid> */}
                         <Grid item >
                             <div>
                                 <Typography variant="h6" component="div">
