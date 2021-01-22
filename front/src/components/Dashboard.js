@@ -15,17 +15,24 @@ const styles = {
   }
 
 }
-const titleConst = "Titlu din props, in functie de ce apelam"
+// const titleConst = "Titlu din props, in functie de ce apelam"
 class Dashboard extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+        titlu: 'Titlu la ce s-a selectat',
+        subtitlu: 'Afisare subtitlu la ce s-a selectat'
+    }
+  }
   render() {
     return (
       <>
         {/* <> e shortcut pentru react fragment, ca sa "creem" o componenta parinte */}
-        <SideMenu
-        name="home"></SideMenu>
+        <SideMenu name="home"></SideMenu>
         <div className="App" style={styles.appMain}>
           <Header></Header>
-          <PageHeader title={titleConst} subtitle="Subtitlu ca mai sus"> titlu</PageHeader>
+          <PageHeader title={this.state.titlu} subtitle={this.state.subtitlu}></PageHeader>
         </div>
         <CssBaseline />
       </>

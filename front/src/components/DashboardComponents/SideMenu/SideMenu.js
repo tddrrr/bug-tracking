@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Drawer } from '@material-ui/core';
 import { MenuItems } from "./SideMenuItem";
 import { Button } from "../Button/Button"
+import PageHeader from '../PageHeader'
 import "./SideMenu.css"
 const styles = {
     sidemenu: color => ({
@@ -24,25 +25,29 @@ class SideMenu extends Component {
     state = { clicked: false }
 
     handleClick = () => {
-        this.setState({ clicked: !this.state.clicked })
+        this.setState({ clicked: !this.state.clicked 
+        })
     }
     render() {
         return (
             <nav className="sidemenu" style={styles.sidemenu("LightSteelBlue")}>
                 <h1 className="navbar-logo"></h1>
                 <h1 className="navbar-logo">Welcome!</h1>
-                <h1 className="navbar-logo"></h1>
+                <h1 className="navbar-logo"></h1> 
+                {/* alea de mai sus sunt pentru spatiere, avem nevoie doar de welcome */}
                 <div className="menu-icon" onClick={this.handleClick}>
                     <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
                 <ul>
-                    {MenuItems.map((item, index) => {
+                    {
+                    MenuItems.map((item, index) => {
                         return (
                             <li key={index}>
                                 <a className={item.cName} href={item.url} >
                                     {item.title}
 
                                 </a>
+                                
                             </li>
                         )
                     })}
