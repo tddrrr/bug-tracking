@@ -4,6 +4,7 @@ import SideMenu from './DashboardComponents/SideMenu/SideMenu';
 import Header from './DashboardComponents/Header'
 import PageHeader from './DashboardComponents/PageHeader'
 import { Table, CssBaseline, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import {withRouter} from 'react-router-dom'
 // import {router} from '../../../routes';
 // import {get} from '../../../controllers/user'
 
@@ -92,4 +93,4 @@ class Dashboard extends Component {
   };
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

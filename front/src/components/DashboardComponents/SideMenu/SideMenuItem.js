@@ -1,7 +1,7 @@
 export const MenuItems=[
     {
         title:'View All Projects',
-        path:'../dashboard/all_projects',
+        path:'../dashboard/getAllProjects',
         cName:'nav-links'
     },
     {
