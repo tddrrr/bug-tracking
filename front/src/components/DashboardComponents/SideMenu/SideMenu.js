@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { Drawer } from '@material-ui/core';
 import { MenuItems } from "./SideMenuItem";
-import { Button } from "../Button/Button"
-import PageHeader from '../PageHeader'
 import "./SideMenu.css"
 import { Link } from 'react-router-dom';
-import {CreateProject} from "../../CreateProject"
 const styles = {
     sidemenu: color => ({
         display: "flex",

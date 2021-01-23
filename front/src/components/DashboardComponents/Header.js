@@ -1,6 +1,5 @@
 import { AppBar, Grid, IconButton, Toolbar, Badge, Typography } from '@material-ui/core';
 import React, { Component } from 'react';
-import BugReportIcon from '@material-ui/icons/BugReport';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
