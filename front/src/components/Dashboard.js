@@ -6,10 +6,9 @@ import PageHeader from './DashboardComponents/PageHeader'
 import { Table, CssBaseline, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify';
+import {toast } from 'react-toastify';
 import {TextField, Dialog, DialogActions, DialogContent,
 DialogContentText, DialogTitle} from '@material-ui/core'
-import {InputLabel, MenuItem, Select} from '@material-ui/core'
 
 const styles = {
   appMain: {

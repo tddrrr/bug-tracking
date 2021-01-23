@@ -6,6 +6,7 @@ import Alert from '@material-ui/lab/Alert';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {withRouter} from 'react-router-dom'
+import {InputLabel, MenuItem, Select} from '@material-ui/core'
 
 class CreateProject extends Component{
     constructor(props) {
@@ -14,7 +15,9 @@ class CreateProject extends Component{
         this.state = {
             name: '',
             description: '',
-            repo: ''
+            repo: '',
+            Team: '',
+            Teams: []
         }
 
         this.changeHandler=(e) => {
@@ -24,30 +27,35 @@ class CreateProject extends Component{
         }
 
         this.onCreate = (e) => {
-        let token = localStorage.getItem('token');
-        axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
-            if (this.state.name && this.state.repo) {
+            if (this.state.name && this.state.repo && this.state.description && this.state.Team) {
                 axios.post('/api/project/createProject', {name: this.state.name, description: this.state.description, 
-                    repo: this.state.repo})
+                    repo: this.state.repo,
+                    teamID: this.state.Team
+                })
                     .then((res) => {console.log(res.data);
                         this.setState({openSuccess: true})
                         props.history.push("/dashboard")
                     })
                     .catch(error => {console.log(error.response.data);
-                                    toast.error(`${error.response.data.message}`);}) //cu toastify
+                                    toast.error(`${error.response.data}`);}) //cu toastify
             } else {
-                this.setState({openError: true})
+                toast.error("You must complete all fields")
             }
         }
 
-        this.handleCloseSuccess = () => {
-            this.setState({openSuccess: false})
-        }
-        this.handleCloseError = () => {
-            this.setState({openError: false})
-        }
-
     }
+
+    componentDidMount() {
+        axios.get('/api/team/getTeams')
+        .then(res => {
+            console.log(res.data);
+            this.setState({
+                Teams: res.data
+            })
+        })
+    }
+
+
     render() {
         return(
             <div>
@@ -63,13 +71,39 @@ class CreateProject extends Component{
             <Grid item xs={12}>
             <TextField name="repo" onChange={this.changeHandler} value={this.state.repo} id="outlined-basic" autoFocus required label="Repository" variant="outlined" />
             </Grid>
-            <br></br><br></br>
-            <Button variant="contained" size="medium" color="primary"  onClick={this.onCreate}>
+            <InputLabel id="selectLabel">Team</InputLabel>
+                <Select
+                className="selects"
+                name="team"
+                labelId="selectLabel"
+                id="select"
+                value={this.state.Team}
+                onChange={(e) => {
+                    this.setState({Team: e.target.value})
+                }}
+                >
+                {this.state.Teams.map(t => {
+                    return (
+                        <MenuItem key={t.id} value={t.id}>{t.id} {t.Name}</MenuItem>
+                    )
+                })}
+                </Select>
+                <br></br><br></br>
+                <Button variant="contained" size="medium" color="primary"  onClick={this.onCreate}>
                 Create
             </Button>
-            
             </Grid>
-            
+            <ToastContainer
+                    position="bottom-center"
+                    autoClose={5000}
+                    hideProgressBar={true}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
             </div>
         )
     }

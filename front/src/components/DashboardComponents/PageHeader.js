@@ -21,7 +21,7 @@ const PageHeader = (props) => (
             <Typography variant="h6" component="div">
                 {props.title}
             </Typography>
-            <Typography variant="hsubtitle6" component="div">
+            <Typography variant="h6" component="div">
                 {props.subtitle}
             </Typography>
             <Container fixed >

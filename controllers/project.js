@@ -58,7 +58,7 @@ export default {
         const user = await User.findByPk(req.user.id, {
             include: [Team]
         });
-        const project = await Project.findByPk(req.params.id);
+        const project = await Project.findByPk(req.body.id);
         if (project) {
             let bool = user.Teams.find((team) => team.id === project.teamID)
             if (bool) {

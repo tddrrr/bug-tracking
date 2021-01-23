@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import SideMenu from './DashboardComponents/SideMenu/SideMenu';
 import Header from './DashboardComponents/Header'
-import PageHeader from './DashboardComponents/PageHeader'
 import {withRouter} from 'react-router-dom'
 import Table from '@material-ui/core/Table';  
 import TableBody from '@material-ui/core/TableBody';  
@@ -13,6 +12,9 @@ import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import '../css/viewProjects.css'
 import {Button} from '@material-ui/core'
+import {ToastContainer, toast } from 'react-toastify';
+import {Dialog, DialogActions, DialogContent,
+DialogContentText, DialogTitle} from '@material-ui/core'
 
 const styles = {
     appMain: {
@@ -41,18 +43,32 @@ class ViewProjects extends Component {
         super(props)
 
         this.state = {
-            Projects: []
+            Projects: [],
+            dialog: false,
+            projectID: -1
         }
+
+        this.openDialog = (id) => {
+            this.setState({dialog: true})
+            this.setState({projectID: id})
+        }
+        this.closeDialog = () => {
+            this.setState({dialog: false})
+        }
+        this.getProjects = () => {
+            axios.get('/api/project/getProjects')
+            .then(res => {
+                console.log(res.data);
+                this.setState({
+                    Projects: res.data
+                });
+            })
+        }
+        
     }
 
     componentDidMount() {
-        axios.get('/api/project/getProjects')
-        .then(res => {
-            console.log(res.data);
-            this.setState({
-                Projects: res.data
-            });
-        })
+        this.getProjects();
     }
 
     render() {
@@ -72,13 +88,13 @@ class ViewProjects extends Component {
                                 <TableCell align="center">Team number</TableCell> 
                                 <TableCell align="center">Add bug</TableCell>
                                 <TableCell align="center">See bugs</TableCell>
-
+                                <TableCell align="center">Delete project</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {
                                 this.state.Projects.map((p, index) => {
-                                    return <TableRow key="index">
+                                    return <TableRow key={index}>
                                         <TableCell align="center" component="th" scope="row">
                                         {p.Name}
                                         </TableCell>
@@ -96,6 +112,12 @@ class ViewProjects extends Component {
                                         }}>Click to see</Button>
 
                                         </TableCell>
+                                        <TableCell align="center">
+                                            <Button onClick={() => {
+                                                this.openDialog(p.id);
+                                            }}
+                                            >Delete</Button>
+                                        </TableCell>
 
                                     </TableRow>
                                 })
@@ -103,7 +125,56 @@ class ViewProjects extends Component {
                         </TableBody>
                     </Table>
                 </TableContainer>
-
+                <Dialog
+                    open={this.state.dialog}
+                    onClose={this.state.closeDialog}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">Are you sure you want to delete this project?</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Once you delete this project, you cannot recover it.
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.closeDialog} color="primary">
+                        NO
+                    </Button>
+                    <Button onClick={
+                        () => {
+                            console.log(this.state.projectID);
+                            axios.delete("/api/project/deleteProject", {
+                                data: {
+                                    id: this.state.projectID
+                                }
+                            })
+                            .then(res => {
+                                this.closeDialog();
+                                toast.success(res.data);
+                                this.getProjects();
+                            })
+                            .catch(err => {
+                                this.closeDialog();
+                                toast.error(err.response.data)
+                            })
+                        }
+                    } color="primary" autoFocus>
+                        YES
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+                <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
                 </div>
             </div>
         )
