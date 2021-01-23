@@ -16,7 +16,7 @@ export default {
     },
     updateUserName: async (req, res) => {
         try {
-            const user = await User.findByPk(req.params.id);
+            const user = await User.findByPk(req.user.id);
             if (!user) {
                 res.status(404).send("User doesn't exist");
             } else {
